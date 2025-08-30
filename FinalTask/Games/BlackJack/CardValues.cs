@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalTask.Games.BlackJack
 {
-    public enum CardMeaning
+    public enum CardValues
     {
         Six = 6,
         Seven = 7,
