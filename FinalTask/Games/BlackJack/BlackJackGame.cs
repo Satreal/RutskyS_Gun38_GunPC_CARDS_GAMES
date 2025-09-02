@@ -18,7 +18,9 @@ namespace FinalTask.Games.BlackJack
         {
             if (cardCount != 36)
             {
+                cardCount = 36;
                 throw new ArgumentException(nameof(cardCount), "Количество карт должно быть 36");
+                
             }
             _cardCount = cardCount;
             FactoryMethod();
@@ -38,12 +40,17 @@ namespace FinalTask.Games.BlackJack
         }
         private Queue<Card> Shuffle(List<Card> card)
         {
+            Queue<Card> shuffledDeck = new Queue<Card>();
             for (int i = card.Count - 1; i > 0; i--)
             {
                 int j = _random.Next(i + 1);
                 (card[i], card[j]) = (card[j], card[i]);
             }
-            return new Queue<Card>(card);
+            foreach (Card c  in card)
+            {
+                shuffledDeck.Enqueue(c);
+            }
+            return shuffledDeck;
         }
 
         private int CalculatePoint(List<Card> cards)
