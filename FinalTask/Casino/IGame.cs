@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FinalTask.Casino
 {
-    internal interface IGame
+    public interface IGame
     {
+        public void StartGame();
     }
 }

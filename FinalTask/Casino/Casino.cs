@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalTask.Casino
 {
-    public  class Casino
+    public  class Casino : IGame
     {
         
 
