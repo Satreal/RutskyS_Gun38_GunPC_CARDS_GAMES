@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalTask.Service
 {
-    internal interface ISaveLoadService<T>
+    public interface ISaveLoadService<T>
     {
        public void SaveData(T save, string identificator);
         public T LoadData(string identificator);
