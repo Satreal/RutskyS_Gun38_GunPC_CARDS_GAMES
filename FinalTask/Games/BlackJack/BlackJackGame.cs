@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿
 
 namespace FinalTask.Games.BlackJack
 {
@@ -18,11 +12,15 @@ namespace FinalTask.Games.BlackJack
         {
             if (cardCount != 36)
             {
-                cardCount = 36;
-                throw new ArgumentException(nameof(cardCount), "Количество карт должно быть 36");
-                
+                _cardCount = 36;
+                Console.WriteLine("Количество карт должно быть 36. приведено к значению по умолчанию");
+
             }
-            _cardCount = cardCount;
+            else
+            {
+                _cardCount = cardCount;
+
+            }
             FactoryMethod();
         }
         protected override void FactoryMethod()
@@ -46,7 +44,7 @@ namespace FinalTask.Games.BlackJack
                 int j = _random.Next(i + 1);
                 (card[i], card[j]) = (card[j], card[i]);
             }
-            foreach (Card c  in card)
+            foreach (Card c in card)
             {
                 shuffledDeck.Enqueue(c);
             }
@@ -90,7 +88,7 @@ namespace FinalTask.Games.BlackJack
             Console.WriteLine($"Ваши карты: {string.Join(", ", player)} (очков: {playerPoints})");
             while (playerPoints == computerPoints && playerPoints <= 21 && computerPoints <= 21)
             {
-                Console.WriteLine("Игроки берут еще по одной карте\nНажми любую клавижу для раздачи" );
+                Console.WriteLine("Игроки берут еще по одной карте\nНажми любую клавижу для раздачи");
                 Console.ReadKey();
                 var playerCard = _deck.Dequeue();//возможно ошибка
                 player.Add(playerCard);

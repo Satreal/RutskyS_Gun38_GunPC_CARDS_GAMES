@@ -1,10 +1,17 @@
-﻿namespace FinalTask
+﻿using FinalTask.Service;
+
+
+
+namespace FinalTask
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var saveLoadService = new FileSystemSaveLoadService("Profiles");
+            var casino = new FinalTask.Casino.Casino(saveLoadService);
+            casino.StartGame();
+            return;
         }
     }
 }

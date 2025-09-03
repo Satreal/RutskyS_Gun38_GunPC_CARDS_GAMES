@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace FinalTask.Games.Dice
 {
-    public class WrongDiceNumberException:Exception
+    public class WrongDiceNumberException : Exception
     {
-        public WrongDiceNumberException( int value, int min, int max)
+        public WrongDiceNumberException(int value, int min, int max)
             : base($"Неверное значение кубика: {value}. Допустимые значения от {min} до {max}.")
         {
         }
-        
+
     }
 }

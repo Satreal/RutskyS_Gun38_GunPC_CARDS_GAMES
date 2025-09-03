@@ -8,9 +8,9 @@ namespace FinalTask.Service
 {
     public interface ISaveLoadService<T>
     {
-       public void SaveData(T save, string identificator);
+        public void SaveData(T save, string identificator);
         public T LoadData(string identificator);
-       
+
 
     }
 }
