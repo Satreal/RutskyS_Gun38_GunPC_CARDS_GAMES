@@ -43,32 +43,33 @@ namespace FinalTask.Casino
             do
             {
                 input = Console.ReadLine();
-                switch (input)
+                if(input!="1" && input != "2")
                 {
-                    case "1":
-                        BlackJackGame();
-                        break;
-                    case "2":
-                        DiceGame();
-                        break;
-                    default:
-                        Console.WriteLine("Некорректный ввод. Пожалуйста, выберите 1 или 2.");
-                        break;
+                    Console.WriteLine("Некорректный ввод. Пожалуйста, выберите 1 или 2.");
                 }
-            } while (input != "1" || input != "2");
-            return;
+               
+            } while (input != "1" && input != "2");
+            if (input == "1")
+            {
+                BlackJackGame();
+            }
+            else
+            {
+                DiceGame();
+            }
         }
         private void BlackJackGame()
         {
             if (_player.Bank <= 0)
             {
                 Console.WriteLine("No money? Kicked!");
+                EndGame();
                 return;
             }
             int betPlayer = Bet();
             Console.WriteLine("Введите количество карт (в демо версии работает только 36)");
             var game = new BlackJackGame(int.Parse(Console.ReadLine()));
-            game.PlayGame();
+           
             game.OnWin += () =>
             {
                 _player.Bank += betPlayer;
@@ -86,6 +87,7 @@ namespace FinalTask.Casino
                 Console.WriteLine($"Ничья! Ваш банк остался: {_player.Bank}");
                 MoneyLimits();
             };
+            game.PlayGame();
             EndGame();
         }
         private void DiceGame()
@@ -93,6 +95,7 @@ namespace FinalTask.Casino
             if (_player.Bank <= 0)
             {
                 Console.WriteLine("No money? Kicked!");
+                EndGame();
                 return;
             }
             Console.WriteLine("Вы выбрали игру в кости.");
@@ -104,7 +107,7 @@ namespace FinalTask.Casino
             Console.WriteLine("и максимальное значение на кости:");
             int max = int.Parse(Console.ReadLine());
             var game = new DiceGame(countDice, min, max);
-            game.PlayGame();
+           
             game.OnWin += () =>
             {
                 _player.Bank += betPlayer;
@@ -122,6 +125,7 @@ namespace FinalTask.Casino
                 Console.WriteLine($"Ничья! Ваш банк остался: {_player.Bank}");
                 MoneyLimits();
             };
+            game.PlayGame();
             EndGame();
         }
         private void MoneyLimits()
@@ -129,7 +133,8 @@ namespace FinalTask.Casino
             if (_player.Bank <= 0)
             {
                 Console.WriteLine("No money? Kicked!");
-                return;
+                EndGame();
+                
             }
             else if (_player.Bank > int.MaxValue)
             {
@@ -158,7 +163,8 @@ namespace FinalTask.Casino
         {
             Console.WriteLine("Игра окончена. Сохраняем профиль...");
             _saveLoadService.SaveData(_player, _fileName);
-            Console.WriteLine("Профиль сохранен. До новых встреч!");
+            Console.WriteLine("Профиль сохранен. До новых встреч! Нажми любую клавишу для выхода");
+            Console.ReadKey();
             return;
         }
     }

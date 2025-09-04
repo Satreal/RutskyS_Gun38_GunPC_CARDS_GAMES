@@ -1,4 +1,5 @@
-﻿using FinalTask.Service;
+﻿using FinalTask.Casino;
+using FinalTask.Service;
 
 
 
@@ -9,9 +10,9 @@ namespace FinalTask
         static void Main(string[] args)
         {
             var saveLoadService = new FileSystemSaveLoadService("Profiles");
-            var casino = new FinalTask.Casino.Casino(saveLoadService);
+            IGame casino = new FinalTask.Casino.Casino(saveLoadService);
             casino.StartGame();
-            return;
+            
         }
     }
 }

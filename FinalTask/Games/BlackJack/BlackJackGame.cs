@@ -85,7 +85,8 @@ namespace FinalTask.Games.BlackJack
 
             int playerPoints = CalculatePoint(player);
             int computerPoints = CalculatePoint(computer);
-            Console.WriteLine($"Ваши карты: {string.Join(", ", player)} (очков: {playerPoints})");
+            Console.WriteLine($"Ваши карты: {string.Join(", ", player)}, (очков: {playerPoints})");
+            Console.WriteLine($"Карты компьютера: {string.Join(", ", computer)}, (очков:{computerPoints}))");
             while (playerPoints == computerPoints && playerPoints <= 21 && computerPoints <= 21)
             {
                 Console.WriteLine("Игроки берут еще по одной карте\nНажми любую клавижу для раздачи");
